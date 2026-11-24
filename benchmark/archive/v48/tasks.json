@@ -1,0 +1,216 @@
+{
+  "name": "AnYanEval",
+  "version": 48,
+  "maximum_score": 100,
+  "dimensions": [
+    {
+      "name": "算法对抗",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "ALG-07",
+          "title": "动态图中的仿射约束与分量代价",
+          "deadline_seconds": 1200,
+          "prompt": "交付 affine_graph.py，实现 solve(initial, operations)。有 n 个点，编号 0..n−1，每点标签为 0、1、2、3。initial[i]=(c0,c1,c2,c3) 给出四种标签的固定代价，可为负数。初始所有标签可选，且无边。函数不改输入。\n\n- (\"ADD\",u,v,a,b) 添加约束 x[v] = a*x[u]+b (mod 4)，a 为 −1 或 1，b 为 0..3。允许自环、平行边和完全相同的边。\n- (\"DEL\",u,v,a,b) 删除一份完全相同的有序约束，保证当时存在。其余份继续有效。\n- (\"PIN\",u,mask) 替换 u 的允许掩码。mask 为 0..15，第 x 位为 1 才允许标签 x。mask=0 表示没有可选标签。\n- (\"ASK\",u) 分别固定 x[u] 为 0、1、2、3，返回 u 所在无向连通分量在各固定标签下的最小总代价。只检查该分量的边和掩码。不可行的项为 None。\n\nsolve 按查询顺序返回四项列表组成的列表。1≤n≤100000，操作数最多 100000，代价绝对值不超过 10^9。允许离线。例如 initial=[(0,4,-1,2),(3,1,0,5)]，operations=[(\"ASK\",0),(\"ADD\",0,1,-1,1),(\"ASK\",0),(\"PIN\",1,1),(\"ASK\",0),(\"DEL\",0,1,-1,1),(\"ASK\",0)] 时返回 [[0,4,-1,2],[1,7,4,2],[None,7,None,None],[0,4,-1,2]]。\n\n基础组 n≤40、操作数≤200，覆盖全部操作，可以先提交适用于基础组的可运行版本。中档组只有 ADD 和 ASK，n 和操作数均最多 20000。完整组覆盖全部操作和完整规模。按组独立计分，各组使用同一输入输出接口。中档和完整组每个用例限时 45 秒、峰值 600 MiB。\n另交 design.md，说明标签沿边正反向的变换、矛盾及掩码的处理、删边后的状态与复杂度，并注明已验证的规模。",
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "数学推理",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "MATH-06",
+          "title": "两参数模式竞赛的全区间稳健性证明",
+          "deadline_seconds": 1200,
+          "prompt": "给定二态源，上一位为 0 时下一位取 1 的概率为 p，上一位为 1 时下一位取 0 的概率为 q。前史位 s∈{0,1} 只用于第一次转移。\n读入新位直到 A=00110、B=10001、C=01110 中一个首次出现。生成 0 耗时 1，生成 1 耗时 2。R 是包含吸收位的总耗时对 2 的余数。\n设 q 可以任取闭区间 [1/8,7/8]。精确刻画所有 0<p<1，使得对该区间每个 q、同时对两个前史位都有 P(A获胜 | R=0)>P(B获胜 | R=0)。\n\n证明对每个 q、每个起始位，条件差在 0<p<1 内的零点个数和分段符号。给出稳健区域的全部边界，用宽度不超过 10^-7 的有理区间隔离，并判断边界点是否包含。证明统一对全部 q 的结论，并给出稳健区域之外不成立的反例参数或证书。数值网格不能替代全区间证明。\n可以用有理式、Sturm 计数、Descartes 或其他可核验符号证书。需要说明如何保证分母不会改变用于判断的符号。请把能独立复算的证明写入 solution.md。\n另交 Python 标准库 verify.py，运行 python verify.py --p 2/7 --q 1/3 --start 0 时输出 JSON {mass:{A:[偶质量,奇质量],B:[...],C:[...]}}。每项为最简有理字符串，整数只写分子。支持任意 0<p,q<1 的有理数及两个前史位。",
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "科学研究",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "SCI-03",
+          "title": "受限分配下的双端点精确检验",
+          "deadline_seconds": 1200,
+          "prompt": "审计一项合成设备随机试验。设计文件为 assignment_notes.txt，输入为 allocation.csv 和 measurements.csv。按预先规定的修订过滤、去重、冲突和可观测条件还原设备结局。按原始分配计算接收和正确性两个端点的等权配对差。\n在真实的随机化空间里求两个有符号分子的联合分布。精确双侧边际 p 值以各自绝对差为阈值，两项校正 p 值以同次随机分配中两个绝对差的最大值为统计量，分别用各自观察绝对差作阈值。再给出最大值统计量的全局检验。边界相等计入尾部，给出整数尾数和分母。\n分别解释可观测端点的联合尖锐零假设、该设计下边际与校正检验的结论，以及缺失如何影响潜在正确性端点的可识别性。给出潜在正确性 B−A 的最坏和最好界限、25 格缺失敏感性及符号翻转边界。区分按原始分配的效应与实际使用效果，说明下一轮怎样保存接收失败与验证缺失的不同记录。\n交付 report.md 和 analyze.py。运行 python analyze.py --allocation allocation.csv --measurements measurements.csv --out result.json 复跑，格式见 result_schema.txt。验收会用乱序、修订观测和另一份仍符合设计的分配表。",
+          "initial_files": {
+            "allocation.csv": "block,pair,position,device,assigned\nG1,P02,Y,P02-Y,B\nG1,P05,X,P05-X,B\nG2,P12,X,P12-X,B\nG1,P01,Y,P01-Y,B\nG1,P03,X,P03-X,B\nG2,P07,X,P07-X,A\nG1,P05,Y,P05-Y,A\nG1,P01,X,P01-X,A\nG2,P11,X,P11-X,B\nG2,P08,X,P08-X,A\nG1,P04,X,P04-X,B\nG2,P09,Y,P09-Y,A\nG2,P09,X,P09-X,B\nG2,P11,Y,P11-Y,A\nG2,P10,Y,P10-Y,B\nG1,P03,Y,P03-Y,A\nG1,P04,Y,P04-Y,A\nG1,P06,Y,P06-Y,B\nG1,P06,X,P06-X,A\nG1,P02,X,P02-X,A\nG2,P12,Y,P12-Y,A\nG2,P10,X,P10-X,A\nG2,P08,Y,P08-Y,B\nG2,P07,Y,P07-Y,B\n",
+            "measurements.csv": "device,slot,revision,actual,received,valid\nP08-Y,6,4,B,1,1\nP09-X,2,4,B,1,0\nP07-X,2,4,A,1,0\nP02-X,5,4,A,1,1\nP01-Y,5,4,B,1,1\nP06-Y,1,4,B,1,1\nP07-Y,4,4,B,1,0\nP11-Y,4,4,A,1,1\nP10-X,2,4,A,0,\nP02-X,2,4,A,1,0\nP05-Y,6,4,A,1,0\nP08-Y,2,4,B,1,0\nP12-X,6,4,B,1,0\nP01-Y,2,4,B,1,1\nP06-Y,6,4,B,1,0\nP10-Y,5,1,B,1,1\nP11-Y,3,4,A,1,0\nP05-Y,1,4,A,0,\nP09-Y,2,4,A,1,1\nP02-Y,4,1,B,1,1\nP08-X,1,4,A,0,\nP10-Y,2,4,B,1,1\nP11-Y,5,4,A,1,1\nP11-X,3,4,B,1,0\nP03-X,1,4,B,1,0\nP05-Y,5,1,A,1,1\nP02-Y,4,4,B,1,1\nP07-X,1,4,A,1,0\nP06-Y,3,4,B,1,1\nP03-Y,3,4,A,1,1\nP07-X,6,4,A,1,1\nP11-Y,5,4,A,1,0\nP04-X,2,4,B,1,1\nP04-Y,3,4,A,1,0\nP09-Y,5,4,A,1,0\nP11-X,2,4,B,1,1\nP12-X,3,4,B,1,1\nP02-Y,6,4,B,1,1\nP07-Y,3,4,B,1,1\nP01-Y,1,4,B,1,1\nP06-X,4,4,A,1,0\nP12-X,5,4,B,0,\nP05-Y,5,4,A,0,\nP12-Y,4,1,A,1,1\nP12-X,1,4,B,1,1\nP01-Y,4,4,B,1,1\nP11-X,5,1,B,1,1\nP12-Y,4,4,A,1,1\nP02-X,3,4,A,1,1\nP06-X,5,1,A,1,1\nP10-X,5,4,B,1,1\nP10-Y,4,4,B,1,0\nP11-X,1,4,B,1,0\nP03-X,4,1,B,1,1\nP05-X,1,4,B,1,1\nP02-Y,1,4,A,1,1\nP01-X,5,1,A,1,1\nP08-X,6,4,A,1,1\nP10-X,4,4,A,0,\nP09-X,1,1,B,1,1\nP05-X,5,4,B,1,1\nP10-Y,3,4,B,1,1\nP10-Y,6,4,B,1,0\nP03-Y,1,4,A,1,0\nP09-Y,6,4,A,1,0\nP05-Y,4,4,A,1,1\nP01-X,6,4,A,1,1\nP12-Y,1,4,A,1,0\nP12-X,5,4,B,0,\nP01-X,3,4,A,1,\nP02-X,4,4,A,1,1\nP11-Y,2,1,A,1,1\nP09-Y,3,1,A,1,1\nP04-Y,2,4,A,1,\nP01-Y,4,4,B,1,0\nP02-Y,3,4,B,1,1\nP04-X,1,1,B,1,1\nP12-X,2,1,B,1,1\nP04-Y,3,1,A,1,1\nP09-X,6,4,B,1,1\nP09-X,1,4,B,1,1\nP07-Y,2,4,B,1,1\nP06-X,5,4,A,1,1\nP08-X,2,4,B,1,0\nP09-Y,6,4,A,1,1\nP11-X,6,4,B,1,1\nUNLISTED,1,4,A,1,1\nP03-Y,3,4,A,1,0\nP10-X,1,4,A,1,1\nP05-Y,2,4,A,1,1\nP06-X,2,4,A,1,1\nP07-Y,4,1,B,1,1\nP05-X,3,1,B,1,1\nP12-Y,2,4,A,1,\nP05-Y,5,4,A,0,\nP01-Y,3,4,B,1,0\nP10-X,6,4,A,1,0\nP04-X,2,4,B,1,0\nP07-Y,1,4,B,1,1\nP10-X,3,4,A,1,1\nP04-Y,1,4,A,1,0\nP03-X,2,4,B,1,\nP01-X,7,4,B,1,0\nP09-X,4,4,B,1,1\nP03-X,5,4,B,1,1\nP04-X,1,4,B,1,1\nP02-Y,2,4,B,1,0\nP12-Y,5,4,A,1,1\nP07-Y,5,4,B,1,1\nP03-Y,5,4,A,1,1\nP03-Y,6,1,A,1,1\nP11-Y,1,4,A,1,0\nP07-X,2,1,A,1,1\nP08-Y,4,4,B,1,\nP08-Y,3,4,B,1,1\nP06-X,1,4,A,1,1\nP01-X,5,4,A,1,\nP06-Y,3,4,B,1,1\nP04-X,6,4,B,1,1\nP03-Y,1,1,A,1,1\nP09-Y,4,4,A,1,1\nP02-X,1,4,A,1,1\nP05-X,1,4,B,1,1\nP07-Y,1,4,B,1,0\nP06-Y,5,4,B,1,1\nP04-X,3,4,B,1,0\nP12-Y,6,4,A,1,1\nP01-Y,6,4,B,1,0\nP05-X,4,4,B,1,1\nP03-X,4,4,B,1,1\nP05-Y,3,4,A,1,0\nP07-X,6,4,A,1,1\nP09-Y,1,4,A,1,1\nP08-X,5,4,A,1,0\nP09-X,2,4,B,1,0\nP11-Y,3,4,A,1,1\nP08-Y,5,4,B,1,1\nP09-Y,3,4,B,0,\nP08-X,4,4,A,1,1\nP11-Y,6,4,B,0,\nP04-Y,6,4,A,1,\nP02-X,6,4,A,1,1\nP08-Y,6,1,B,1,1\nP02-X,3,4,A,1,0\nP03-Y,4,4,A,1,1\nP05-X,3,4,B,1,0\nP04-X,3,4,B,1,0\nP08-X,4,4,A,1,1\nP10-Y,5,4,B,1,\nP12-X,2,4,B,1,0\nP10-Y,1,4,B,1,1\nP06-X,6,4,A,0,\nP03-X,6,4,B,1,1\nP07-Y,6,4,B,1,1\nP01-X,1,4,A,1,0\nP02-Y,5,4,B,1,1\nP09-Y,2,4,A,1,0\nP07-X,5,4,A,1,1\nP01-Y,2,1,B,1,1\nP10-X,3,1,A,1,1\nP06-X,3,4,A,1,1\nP09-X,5,4,B,1,1\nP08-X,4,1,A,1,1\nP02-X,2,1,A,1,1\nP09-X,6,1,B,1,1\nP03-Y,2,4,A,0,\nP04-X,6,1,B,1,1\nP09-X,3,4,B,1,0\nP04-X,4,4,B,1,0\nP11-X,4,4,B,1,1\nP11-X,5,4,B,1,1\nP04-X,5,4,B,1,1\nP08-X,3,4,A,1,1\nP07-X,4,4,A,1,\nP05-X,6,4,A,1,0\nP11-Y,2,4,A,1,1\nP12-X,4,4,B,1,1\nP04-Y,4,4,B,1,1\nP03-Y,6,4,A,1,1\nP02-Y,2,4,B,1,0\nP08-X,2,4,B,1,1\nP03-X,5,4,B,1,1\nP11-Y,2,4,A,1,1\nP01-X,4,4,A,1,1\nP10-Y,4,4,B,1,0\n",
+            "assignment_notes.txt": "合成设备试验。G1、G2 各含六对设备，每对由固定位置 X 和 Y 各一台组成。每个区块独立从六对中等概率选恰好三对，让其中的 X 分到 B；其余对的 X 分到 A。每对 Y 接受相反分配。allocation.csv 提供实际随机分配，actual 为窗口中记录的实际固件。各设备固定有六个计划窗口。\n每个 (device,slot) 只保留最高 revision。范围外设备或窗口的行计 out_of_scope_rows；低修订的行计 stale_rows。最高修订按 (actual,received,valid) 去重，重复行计 duplicate_latest_rows，剩多个不同元组则该窗口计 conflicted_slots。无范围内记录计 absent_slots。唯一最高修订元组的 actual 不等于 assigned 时计 crossover_slots。缺记录或记录冲突时，两个可观测端点均记零。\n两个可观测端点都是每设备六个计划窗口中的成功数。received 端点在唯一元组的 received=1 时计 1；valid 端点在 received=1 且 valid=1 时计 1。潜在端点定义为设备原本是否产生正确报文。在唯一元组同时有 received=1 和非空 valid 时，这个端点可观察，否则潜在端点缺失。每端点按 B−A 相减，等权按对平均，所有主要比较按 assigned。\n",
+            "result_schema.txt": "结果为 JSON。顶层键和类型如下。\ndevices: {device:{received,valid,latent_missing}}，三个整数窗口数。\naudit: {out_of_scope_rows,stale_rows,duplicate_latest_rows,conflicted_slots,absent_slots,crossover_slots}。\nmetrics: {received:{numerator,denominator,marginal_extreme,adjusted_extreme},valid:{同四个整数键}}。\nassignments 与 global_extreme: 整数。\njoint_distribution: [[received分子,valid分子,频数],...]，按前两列字典序升序；每项为有正频数的联合结果。\nlatent_missing: {A,B}，两组潜在端点的缺失窗口数。\nbounds: [lower,upper]，效应下界、上界，均用比例小数。\ngrid: [{p_a,p_b,delta},...]，缺失成功率各取 0、0.25、0.5、0.75、1，按 p_a 后按 p_b 升序。\n"
+          },
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "物理模拟",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "PHY-05",
+          "title": "非均匀薄板的接触热阻、相变与辐射交换",
+          "deadline_seconds": 1200,
+          "prompt": "模拟单位厚度的二维薄板。网格 nx 列、ny 行，数组按行优先，x 增长最快。dx 是 nx 个列宽，dy 是 ny 个行高，格 (x,y) 的面积 A_i=dx[x]*dy[y]。grid 为每格材料的索引，materials 的每行 [c_s,c_l,L,T_m,k] 给固态和液态体积热容、体积潜热、熔点（K）及导热率。\n每格状态是体积焓 H，H0 为初始数组。设 H_s=c_s*T_m、H_l=H_s+L。H<H_s 时 T=H/c_s、液相比例为 0。H_s≤H≤H_l 时 T=T_m、液相比例为 (H−H_s)/L。H>H_l 时 T=T_m+(H−H_l)/c_l、液相比例为 1。\n\n相邻两格 i、j 的公共界面有单位面积接触热阻 R。从 j 流入 i 的导热功率为 G*(T_j−T_i)，其中 G=面长/(d_i/(2*k_i)+R+d_j/(2*k_j))，d_i、d_j 为两格沿面法向的宽度。rx 长度为 ny*(nx−1)，按行优先依次对应 (x,y) 与 (x+1,y)。ry 长度为 (ny−1)*nx，按行优先对应 (x,y) 与 (x,y+1)。periodic_y 为真且 ny>1 时，用 r_wrap[x] 额外连接同列的首尾两行，此时 r_wrap 长度为 nx，其余情况为空数组。ny=2 时普通界面和周期界面均计入。未列出的 y 外边界绝热。\nradiation_links 是 [i,j,g] 的列表，0≤i<j<nx*ny，同一格对最多一条。每条从 j 流入 i 的辐射功率为 g*(T_j^4−T_i^4)，i 流入 j 取反。格对可跨越任意距离，也可同时有导热界面。两类格间交换均只在薄板内部转移能量。\n\ncontrols 的每行是 [start,T_left,T_right,h,r,S]，S 是按格排列的体积热源数组，可正可负。从 n=start 的更新 n→n+1 起用此行，直到下一行生效。左边界流入为 h*(T_left−T_i)*dy[y]，右边界流入为 r*(T_right^4−T_i^4)*dy[y]，格内热源为 S_i*A_i。只有一列时同一格同时计入两侧通量。\n每步用后向欧拉。A_i*(H_i^{n+1}−H_i^n) 等于 dt 乘该格净流入，所有通量在该步新状态计算。自第 0 步起，分别累计左对流、右辐射、内源的带符号能量；格间交换不入这三本账。\n\n提交 thermal.py，Python 标准库函数 simulate(params, steps)，返回 {\"snapshots\":[[步号,全格焓,全格温度,全格液相比例,累计左对流,累计右辐射,累计源],...]}。按 steps 顺序输出，第 0 步给原状态和零累计账。params 字段为 nx、ny、dx、dy、dt、periodic_y、materials、grid、H0、rx、ry、r_wrap、radiation_links、controls。steps 为非空的严格递增非负整数序列。controls 的 start 从 0 起且严格递增。nx、ny 是正整数，periodic_y 是布尔值。所有数值有限，列宽、行高、dt 和材料参数为正；H0、边界温度、h、r、接触热阻、g 非负。形状、索引、顺序或数值不合法时抛 ValueError。验收用例最多 256 格、160 步，参考解均为非负温度。\n\n另交 report.md。推导离散能量平衡，说明相变平台上的求解、非负物理解的唯一性与终止准则。用可复算数据量化同时有接触热阻、格间辐射和相变的工况，给出最大单格步进能量残差、三项能量累计值和全局结账误差。",
+          "initial_files": {
+            "example.json": "{\n  \"params\": {\n    \"nx\": 2,\n    \"ny\": 2,\n    \"dx\": [\n      0.6,\n      1.1\n    ],\n    \"dy\": [\n      0.8,\n      1.25\n    ],\n    \"dt\": 0.05,\n    \"periodic_y\": true,\n    \"materials\": [\n      [\n        1.2,\n        1.7,\n        10,\n        309,\n        1.45\n      ],\n      [\n        0.95,\n        1.3,\n        22,\n        312,\n        3.1\n      ]\n    ],\n    \"grid\": [\n      0,\n      1,\n      1,\n      0\n    ],\n    \"H0\": [\n      368,\n      300,\n      317,\n      383\n    ],\n    \"rx\": [\n      0.03,\n      0.15\n    ],\n    \"ry\": [\n      0.05,\n      0.09\n    ],\n    \"r_wrap\": [\n      0.18,\n      0.02\n    ],\n    \"radiation_links\": [\n      [\n        0,\n        3,\n        3e-8\n      ],\n      [\n        1,\n        2,\n        8e-8\n      ]\n    ],\n    \"controls\": [\n      [\n        0,\n        348,\n        300,\n        1.2,\n        6e-8,\n        [\n          0.7,\n          1,\n          -0.8,\n          0\n        ]\n      ],\n      [\n        3,\n        292,\n        336,\n        1.8,\n        9e-8,\n        [\n          -0.5,\n          0.25,\n          -0.75,\n          0.1\n        ]\n      ]\n    ]\n  },\n  \"steps\": [\n    0,\n    1,\n    2,\n    3,\n    4,\n    6\n  ]\n}\n"
+          },
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "三维建模",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "CAD-05",
+          "title": "非圆键槽螺旋装配与全行程配合",
+          "deadline_seconds": 1200,
+          "prompt": "用毫米制建一个可参数重建的四件装配。套筒沿全局 z 轴，从 z=0 到 40。以全局极角 phi 测量，水平外轮廓半径为 10+0.7*cos(5*phi−2*pi*z/40)。中心有贯通圆孔，孔体半径 1.15，两端深 2 的平底沉孔半径 2.4。\n\n三个贯通螺旋键槽 j=0,1,2 在水平截面上的局部原点为 (5.5*cos(theta),5.5*sin(theta))，其中 theta=2*pi*z/P+2*pi*j/3。局部 u、v 轴由全局 x、y 轴在水平面内逆时针转 theta+beta[j] 得到，beta=[0,pi/9,−pi/7]。在此局部坐标，以 (−1.2,−0.7)、(0.9,−0.7)、(0.55,0.85)、(−0.9,0.85) 依次连接成填充梯形。点到梯形的欧氏距离在梯形内为零。插芯截面是距离≤0.20 的区域，键槽截面是距离≤0.20+c 的区域。c 是截面内的等距间隙。三条插芯的原始轴向范围均为 z=4..36，两端各有平封口。\n\n对于任意轴向位移 d∈[−3,3]，同时把三条插芯沿 z 平移 d 并绕全局 z 轴旋转 2*pi*d/P，套筒固定。四件实体在整个行程互不相交，插芯位于对应键槽内。间隙按同一水平截面上的最小边界距离量，碰撞按三维闭实体判断。\n交 housing.obj、guide-a.obj（j=0）、guide-b.obj、guide-c.obj 四个三角网格。每个网格须只有一个连通分量，闭合、向外，且无自交和退化面。housing 的中心孔与三个键槽均独立贯通。轴向尺寸允许 ±0.04 mm；在避开台阶和封口平面的验收截面，实际边界与解析边界的双向最大最近距离≤0.04 mm。各实体体积相对误差≤0.5%。配合时在插芯内部截面量得的最小距离须为正，且与 c 相差≤0.06 mm。\n\n交 build.py，运行 python build.py --out-dir DIR 从空输出目录重建四个 OBJ。--clearance 可在 [0.12,0.60] 内取值（默认 0.35），只改变键槽间隙。--pitch 可取正或负，绝对值在 [24,56] 内（默认 40），只改变键槽及插芯导程，负值反向旋转。两参数可组合，例如 --pitch -28 --clearance 0.12。其他尺寸和初始相位不随参数改变。运行依赖随交付提供，重建无需联网。\n交 sections.svg，标明两个不同高度上的外轮廓、槽、插芯、局部坐标方向和间隙。另交 fit.md，推导全行程的几何配合，并记录默认和上述反向小间隙组合的可复查网格间隙检查。",
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "长流程agent任务",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "FLOW-01",
+          "title": "可恢复的数据发布流程",
+          "points": 10,
+          "deadline_seconds": 1800,
+          "initial_files": {
+            "incoming/day1.csv": "id,amount,status\nA,12,ok\nB,9,ok\nHOLD-<SEED>,999,ok\nN,2,ignored\n",
+            "mock_publish.py": "import hashlib\nimport json\nimport sys\nfrom pathlib import Path\n\nreport = Path('dist/report.json')\njson.loads(report.read_text(encoding='utf-8'))\ndigest = hashlib.sha256(report.read_bytes()).hexdigest()\npath = Path('.mock_publish_state.json')\nstate = json.loads(path.read_text()) if path.exists() else {'attempted': [], 'published': []}\nif digest not in state['attempted']:\n    state['attempted'].append(digest)\n    path.write_text(json.dumps(state), encoding='utf-8')\n    print('TEMPORARY_UNAVAILABLE')\n    sys.exit(75)\nif digest not in state['published']:\n    state['published'].append(digest)\n    path.write_text(json.dumps(state), encoding='utf-8')\n    print('PUBLISHED')\nelse:\n    print('ALREADY_PUBLISHED')\n"
+          },
+          "turns": [
+            {
+              "turn": "编写并运行 pipeline.py。按文件名、行号顺序读 incoming/*.csv。按 held、status、invalid_amount、duplicate 顺序检查并记录首个跳过原因。固定拒绝 ID HOLD-<SEED>，只收 status=ok 的非负整数金额，重复 ID 保留第一条有效记录。输出 dist/report.json，字段 ids 为有效 ID 顺序列表，total 为金额总和，skipped 为四种原因的计数。先处理已有数据，公布核查结果，等待第二批。"
+            },
+            {
+              "before": "首轮结束后退出并重新启动客户端，用原会话 ID 续跑",
+              "add_files": {
+                "incoming/day2.csv": "id,amount,status\nB,9,ok\nC,7,ok\nD,nope,ok\nHOLD-<SEED>,1001,ok\n"
+              },
+              "turn": "第二批文件已到。沿用你前面确认的所有规则，产出合并报告并核对跳过原因。请保留现有输入，等发布确认。"
+            },
+            {
+              "turn": "发布已确认。执行 python mock_publish.py，处理模拟的临时故障。核实 pipeline.py 无输入变化时重复运行得到同样的报告字节，再次尝试发布也只留一次成功。新增 RUN.txt，记录复跑命令和实测结果。只允许改 pipeline.py、dist 下的生成物和 RUN.txt，发布状态仅由模拟发布命令更新。"
+            }
+          ],
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "文学写作",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "LIT-03",
+          "title": "最后一班船的回执",
+          "deadline_seconds": 1200,
+          "prompt": "写一篇原创中文短篇，正文 1800 至 2200 个汉字。暴雨当夜，一座渡口即将停用。用两场戏讲完，始终采用同一人物的第三人称限知。写入以下两句证词，由不同人物说出；两人在各自的经历中都诚实。\n“我交出回执时，站房的钟还没响。”\n“我拿到回执时，钟已经响了。”\n两句话所指的是同一次报时和同一张实体原件。同晚只能有这一张原件，原件是否换手决定一件严重失误由谁负责。第一场须让读者能从已经出现的事实推断两条不同且都可信的保管链，两条链导向不同的责任判断。\n在主角改判之前，分别用三个可以观察到的事实确定关键时刻、经手人和原件同一性。三条线索各自承担不同的排除作用。抽去任何一条，读者都应能构造另一条符合其余现场事实的保管链。主角从既有线索得出结论，并通过动作展示新的判断。\n两种处理方式须履行不同的具体承诺，主角的选择使其中一项永久落空，并在结尾现场承担已经发生的代价。让一条在两场都出现的日常用语因这项选择获得不同的含义。只交故事正文。",
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "全栈开发",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "FULL-03",
+          "title": "可重放事件账及浏览器离线待办",
+          "deadline_seconds": 1200,
+          "prompt": "用 Python 标准库、SQLite 与浏览器原生 HTML/CSS/JS 写可离线保存待发操作的任务板。\n入口 python server.py --port PORT --db PATH，主页 /，API 返回 JSON。字段 status 为 open 或 done，revision 从 1 开始。\n\nGET /api/snapshot 返回 {cursor,tasks}，cursor 为同一事务快照的最后事件号，初始 0，tasks 是当前任务，按 id 升序。任务为 {id,title,status,revision}。\nGET /api/events?after=N&limit=K 返回 {cursor,more,events}，最多 K 个序号大于 N 的事件，按序号升序。N 为非负整数，K 为 1 至 20。cursor 为最后返回序号，空结果沿用 N。more 表示同次读取还有下一页。\nPOST /api/commands 处理 {key,action,...}。key 为 1 到 128 字符，区分大小写。\n- create 使用 title，去首尾空白后 1 至 80 个 Unicode 码点，创建 open 任务。\n- update 使用 id、revision、status，只有任务存在且 revision 匹配才更新。\n- delete 使用 id、revision，删除同样要匹配。\n任务 id 永不复用。更新或删除每次将 revision 加 1。成功返回事件 {seq,action,task}，创建首答 201，其余成功 200。删除事件的 task 为 {id,revision,deleted:true}。\n数据、连续事件号和成功请求的原始响应同一事务保存。相同 key 和语义相同的请求返回 200 及原事件，包括后续改动和重启后。同 key 不同请求返回 409。不存在返回 404。旧版本返回 409 与 {error:\"stale\",current:最新任务}。参数错误 400。失败不消费 key 或事件号。两个请求争用同一旧版本只能一个提交。\n\n任务板有输入 #title、添加 #create、同步 #sync、状态 #status 与表 #tasks。每个任务有 data-task-id、data-revision、#toggle-任务ID 与 #delete-任务ID。状态能宣读。显示 #pending 下的可读待发条目，每个条目标注 data-pending-key。通信失败时 #status 的 data-state 为 offline。\n浏览器将已见任务、游标和待发操作持久保存，应能在 API 暂不可用时重载主页，看见缓存和未发送的操作，继续创建或切换任务。主页本身仍可从本机读取。每次拉事件用 limit=2，连续拉完页面，按序应用更改与删除。\n恢复时，同一操作沿用原 key 和完整参数直到收到结果。即使服务器之前已提交但响应丢失，也只出现一个事件。已提交事件的重放答复若落后于当前任务版本，最终以较新事件为准。\n确实收到 409 stale 后保留该操作，显示具体任务冲突，#status 的 data-state 为 conflict。在 #discard-任务ID 上由用户丢弃这条操作，再同步成服务器状态。保留其他待发条目。禁止自动覆盖同一任务的更新。\n交付启动说明和可运行测试。页面在 360 像素可用，测试会模拟保存成功后掉响应、重载、服务器并发更新和恢复。",
+          "max_points": 10
+        }
+      ]
+    },
+    {
+      "name": "仓库修复",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "REPO-03",
+          "title": "Django 查询别名变更回归",
+          "deadline_seconds": 1200,
+          "prompt": "在固定 Django 工作树中修复随题给出的官方问题。提交最小修复和验证说明，保留现有公开接口。\n定位发生别名变更的调用链，解释哪项状态约束被破坏。用现有测试环境跑一项能区分修复前后的回归，并加一项同类查询变体来保护未受影响的行为。报告实际运行的命令和退出结果。",
+          "fixture": {
+            "dataset": "SWE-bench/SWE-bench_Verified",
+            "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+            "split": "test",
+            "instance_id": "django__django-15128",
+            "base_commit": "cb383753c0e0eb52306e1024d32a782549c27e61",
+            "image": "docker.io/swebench/sweb.eval.x86_64.django_1776_django-16263@sha256:82700a720fd444baafe5b0a83a16784dad712f8da1dc2c2b7070a5c6650e0739",
+            "grader": "swebench==5.0.2"
+          },
+          "max_points": 5
+        },
+        {
+          "id": "REPO-05",
+          "title": "Django 聚合计数的投影裁剪",
+          "deadline_seconds": 1200,
+          "prompt": "在固定 Django 工作树中修复随题提供的官方问题。裁剪 count() 中未用的注解，同时保留有依赖的注解与现有行数语义。\n交最小补丁及验证说明，给出可重复运行的 ORM 查询和实际 SQL 或语句计数。对照三类情况：未被使用的聚合注解，被筛选或其他注解引用的注解，以及影响子查询基数的切片或去重。说明如何判断内层投影和 JOIN 能否移除，并验证无关的聚合结果保持一致。",
+          "fixture": {
+            "dataset": "SWE-bench/SWE-bench_Verified",
+            "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+            "split": "test",
+            "instance_id": "django__django-16263",
+            "base_commit": "321ecb40f4da842926e1bc07e11df4aabe53ca4b",
+            "image": "docker.io/swebench/sweb.eval.x86_64.django_1776_django-16263@sha256:82700a720fd444baafe5b0a83a16784dad712f8da1dc2c2b7070a5c6650e0739",
+            "grader": "swebench==5.0.2"
+          },
+          "max_points": 5
+        }
+      ]
+    },
+    {
+      "name": "事实核验与证据溯源",
+      "max_points": 10,
+      "tasks": [
+        {
+          "id": "FACT-01",
+          "title": "有缺页和版本冲突的签收档案",
+          "deadline_seconds": 1200,
+          "prompt": "核验北库与南库同日签收档案。截止为 05-14 16:00，恰好到点入档的也可用。\n每个库和批次单独认定，只用当时可用的、未撤销的最高版本签收原件。最高版本出现同键冲突时不得回退旧版。撤销只作用于被指明的原件。\n签收计数依签收原件，不依到站通知、未批草稿或转述。批次有明确档案缺页时，找不到签收记录无法证明未签收。\n\n逐条核验下列说法。过了截止时刻才发布的材料不能用来给截止时点的事实定案。\n提交 findings.json，顶层是数组，每项是 {\"id\":\"C01\",\"verdict\":\"supported\",\"citations\":[\"A01\"]}。\nverdict 只能是 supported、contradicted、insufficient。前两类分别表示材料足以证明或反证，后一类表示当前材料无法定案。\ncitations 写组成该结论的记录编号，无需引用题面规则。只交足以支撑结论的相关记录，按证据判断，勿依转述票数。\n同版冲突要给两份原件，缺档要给覆盖范围和最接近的相关记录。结论若依赖撤销、转述链或配置变更，要能追到对应来源。\n\nC01。北库 A17 的有效签收实收 11 件。\nC02。北库 A17 截止时的有效签收实收 10 件。\nC03。北库 B21 的实收可以认定为 9 件。\nC04。南库 A17 的有效签收实收 18 件。\nC05。北库 C08 的签收在截止时还未入档。\nC06。北库 D04 截止未签收。\nC07。北库 E19 最新有效签收实收 6 件。\nC08。转述 A11 和 A12 都可追到 A02，属于同一个原件。\nC09。南库和北库 A17 的已签收件数相差 6 件。\nC10。北库 A17 与北库 C08 的有效签收件数合计 16 件。",
+          "initial_files": {
+            "records/receipts-a.txt": "[A01] 入档 05-14 13:04｜北库 A17｜签收原件 v1｜实收 12。\n[A02] 入档 05-14 15:14｜北库 A17｜签收原件 v2｜复核实收 11。\n[A03] 入档 05-14 16:03｜北库 A17｜签收原件 v3｜复核实收 10，复核事件发生在 15:27。\n[A04] 入档 05-14 15:12｜南库 A17｜签收原件 v4｜实收 18。\n[A05] 入档 05-14 14:28｜北库 B21｜签收原件 v1｜实收 7。\n[A06] 入档 05-14 15:40｜北库 B21｜签收原件 v2｜实收 8，甲方扫描件。\n[A07] 入档 05-14 15:41｜北库 B21｜签收原件 v2｜实收 9，乙方扫描件。\n[A08] 入档 05-14 16:00｜北库 C08｜签收原件 v1｜实收 5。\n[A17] 入档 05-14 15:58｜南库 C08｜签收原件 v4｜实收 7。\n[A18] 入档 05-14 15:42｜南库 B21｜签收原件 v3｜实收 9。\n",
+            "records/receipts-b.txt": "[A13] 入档 05-14 15:00｜北库 E19｜签收原件 v1｜实收 6。\n[A14] 入档 05-14 15:54｜北库 E19｜签收原件 v2｜实收 8。\n[A16] 入档 05-14 16:12｜北库 E19｜签收原件 v3｜实收 7。\n[A19] 入档 05-14 15:58｜南库 E19｜签收原件 v3｜实收 8。\n[A20] 入档 05-14 15:48｜北库 E91｜签收原件 v2｜实收 6。\n",
+            "records/authority.txt": "[A09] 入档 05-14 14:03｜北库 D04｜承运方到站通知。仅确认到站，未观察签收。\n[A10] 入档 05-14 15:50｜档案继承清单。北库 D04 的 14:00 至 15:30 签收记录缺页，档案无法复原该段状态。\n[A15] 入档 05-14 15:57｜清册负责人签发撤销。仅撤销北库 E19 的原件 A14，前版原件保持有效。\n[A21] 入档 05-14 15:52｜南库 D04｜签收原件 v1｜实收 13。\n[A22] 入档 05-14 15:55｜北库其余批次档案清册。缺页通告 A10 仅适用于 D04。\n",
+            "records/forwarded.txt": "[A11] 入档 05-14 15:15｜部门转述。北库 A17 实收 11。仅摘录 A02。\n[A12] 入档 05-14 15:20｜群组汇总。北库 A17 实收 11。此段仅转发 A11。\n[A23] 入档 05-14 15:46｜口头交班记录。听说北库 B21 收到 9，未见原件。\n[A24] 入档 05-14 15:59｜草稿备忘。建议北库 E19 保留 v2，尚未批准。\n[A25] 入档 05-14 15:50｜承运方通知。北库 D04 到站，转述 A09。\n"
+          },
+          "max_points": 5
+        },
+        {
+          "id": "FACT-02",
+          "title": "仪器证书与试验记录溯源",
+          "deadline_seconds": 1200,
+          "prompt": "核验合成校准实验的留档。截至 06-18 18:00。\n试验归属和合格阈值取试验发生时的登记和规范。校准也必须覆盖试验时刻，时间窗左闭右开。有效撤销可以追溯。\n判定“试验合格”必须同时有未冲突的原件、当时适用的合格阈值、覆盖当时的有效温度校准。\n同一次试验的多个导出件不构成独立试验。同号同最高版本原始温度相互矛盾时无法定案。\n已知校准失效可反证“该次合规”，只能说明该读数不能证明实际温度。认定设备完成两次合格需举出两个不同试号。\n\n逐条核验下列说法。过了截止时刻才发布的材料不能用来给截止时点的事实定案。\n提交 findings.json，顶层是数组，每项是 {\"id\":\"C01\",\"verdict\":\"supported\",\"citations\":[\"A01\"]}。\nverdict 只能是 supported、contradicted、insufficient。前两类分别表示材料足以证明或反证，后一类表示当前材料无法定案。\ncitations 写组成该结论的记录编号，无需引用题面规则。只交足以支撑结论的相关记录，按证据判断，勿依转述票数。\n同版冲突要给两份原件，缺档要给覆盖范围和最接近的相关记录。结论若依赖撤销、转述链或配置变更，要能追到对应来源。\n\nC01。Q01 是归于 Z3-42 的合格温度试验。\nC02。E02 是区别于 T01 的一次独立温度试验。\nC03。Q02 的温度原件满足有效校准要求。\nC04。Q03 归于 Z3-42。\nC05。Q03 读数来自有效校准传感器，并满足当时温度阈值。\nC06。Q04 仍能用 K30 的原证书认定合规。\nC07。Q05 按适用阈值及温度校准判定为合格。\nC08。X21 截止时可证明至少有两次独立合格温度试验。\nC09。现有档案能确认 Q06 当时实际温度不超过 70。\nC10。Q08 截止可以认定为合格。",
+          "initial_files": {
+            "records/registry.txt": "[R01] 发布 06-18 09:00｜RIVER 设备别名在 06-18 16:00 前指 Z3-42。\n[R02] 发布 06-18 15:55｜RIVER 设备别名自 06-18 16:00 起指 X21，包含 16:00。\n[R03] 发布 06-18 13:00｜riverside 测试位置与设备别名 RIVER 无关。\n[R04] 发布 06-18 18:03｜更正 R02，从 18:20 起再次换机，不追溯旧试验。\n",
+            "records/limits.txt": "[P02] 发布 06-18 09:00｜试验时刻早于当日 16:00 时用规范 QP2，温度不超过 80 合格。\n[P03] 发布 06-18 15:51｜从 16:00 起用 QP3，温度不超过 70 合格。\n[P04] 发布 06-18 18:05｜次日规范 QP4，温度不超过 68 合格。\n[P05] 发布 06-18 15:45｜仅用于压力试验，数值阈值与温度验收无关。\n",
+            "records/certificates.txt": "[K10] 发布 06-18 12:50｜温度传感器 S10 的校准有效时间为 [13:00,15:00)。\n[K20] 发布 06-18 13:45｜温度传感器 S20 的校准有效时间为 [14:00,18:00)。\n[K30] 发布 06-18 13:45｜温度传感器 S30 的原校准有效时间为 [14:00,18:00)。\n[W30] 发布 06-18 17:40｜撤销 K30。从原有效期起点起认定该证书无效。\n[K40] 发布 06-18 12:45｜温度传感器 S40 的校准有效时间为 [13:00,17:00)。\n[K41] 发布 06-18 18:05｜温度传感器 S40 的续证有效时间为 [17:00,19:00)。\n[K50] 发布 06-18 15:20｜压力传感器 S40-P 有效，不可作为 S40 的温度校准。\n",
+            "records/observations.txt": "[T01] 发布 06-18 14:40｜Q01｜14:20｜RIVER｜S20｜原始温度 v1 = 79。\n[T02] 发布 06-18 15:10｜Q02｜15:00｜RIVER｜S10｜原始温度 v1 = 75。\n[T03] 发布 06-18 16:15｜Q03｜16:05｜RIVER｜S20｜原始温度 v1 = 71。\n[T04] 发布 06-18 16:20｜Q04｜16:10｜Z3-42｜S30｜原始温度 v1 = 70。\n[T05] 发布 06-18 17:18｜Q05｜17:15｜RIVER｜S20｜原始温度 v1 = 70。\n[T06] 发布 06-18 17:33｜Q06｜17:30｜X21｜S40｜原始温度 v1 = 69。\n[T07] 发布 06-18 17:49｜Q07｜17:45｜X21｜S20｜原始温度 v1 = 66。\n[T08] 发布 06-18 17:49｜Q08｜17:46｜X21｜S20｜原始温度 v1 = 68，甲室原件。\n[T09] 发布 06-18 17:52｜Q08｜17:46｜X21｜S20｜原始温度 v1 = 73，乙室原件。\n[T10] 发布 06-18 18:05｜Q08｜17:46｜X21｜S20｜原始温度 v2 = 69。\n[T11] 发布 06-18 17:55｜Q11｜17:49｜Z3-42｜S20｜原始温度 v1 = 69。\n",
+            "records/exports.txt": "[E01] 发布 06-18 16:25｜Q01｜实验抄送，温度 79。只将 T01 转为表格。\n[E02] 发布 06-18 17:40｜Q01｜仪表图，温度 79，由 E01 数据渲染。\n[E03] 发布 06-18 17:54｜Q08｜主管摘要引用 T08，写为合格，未比对其他原件。\n[E04] 发布 06-18 17:37｜Q06｜站点报表显示绿色，使用 T06 自动渲染。\n[E05] 发布 06-18 16:30｜Q04｜测试主管曾确认 K30，在撤销邮件前抄送。\n"
+          },
+          "max_points": 5
+        }
+      ]
+    }
+  ],
+  "execution": {
+    "runner": "DeepSeek Harness",
+    "runner_version": "0.2.1-rc.3",
+    "deadline_cap_seconds_per_case": 1200,
+    "materialization": "场景文件写入隔离工作区。多轮题后续文件在该轮进入工作区。替换文件与题面中的 <SEED>。"
+  }
+}

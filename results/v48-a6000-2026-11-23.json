@@ -1,0 +1,1724 @@
+{
+  "candidate": {
+    "model": "Qwen3.8-Flash-Next-W4A16-AR",
+    "alias": "qwen3.8-flash-next",
+    "context_window": 524288,
+    "engine_pid": 412506,
+    "inference_engine": "vLLM",
+    "tensor_parallel_size": "4",
+    "max_num_seqs": "4",
+    "kv_cache_dtype": "fp8_e4m3",
+    "speculative_config": {
+      "method": "mtp",
+      "num_speculative_tokens": 4
+    }
+  },
+  "suite_version": 48,
+  "seed": 7291,
+  "tasks_sha256": "eb64ede3ba1a78e6cb38e792c924b40406928a00b277163ae47099cd7480f4c7",
+  "rubric_sha256": "d44528bda9b5ecd54c70a7951527db75d8d41dbc32accf6761ba900ff216c490",
+  "runner": {
+    "name": "DeepSeek Harness",
+    "version": "0.2.1-rc.3",
+    "profile": "headless",
+    "node": "24.14.0",
+    "permission_mode": "workspace-write",
+    "compaction": "default",
+    "reasoning_effort": "xhigh",
+    "provider_request_max_tokens": 64000,
+    "deadline_seconds": 1200,
+    "seed_scope": "benchmark task"
+  },
+  "run_date": "2026-11-23",
+  "run_directory": "~/anyaneval-runs/v48-20261123-a91e7d",
+  "scope": "three_task_calibration",
+  "acceptance_environment": {
+    "algorithm_and_physics": "A6000 Linux server",
+    "cad_rebuild": "A6000 Linux server",
+    "cad_mesh_measurements": "local, on rebuilt OBJ files"
+  },
+  "judge": {
+    "mode": "independent_acceptance_and_codex_document_review",
+    "benchmark_judge_model_used": false
+  },
+  "tested_score": 27.5,
+  "tested_maximum": 30,
+  "full_suite_total": null,
+  "attempts": {
+    "ALG-07": {
+      "task_id": "ALG-07",
+      "seed": 7291,
+      "outcome": "completed",
+      "elapsed_s": 608.335,
+      "exit_code": 0,
+      "event_counts": {
+        "session": 1,
+        "status": 92,
+        "thinking": 45,
+        "tool_call": 44,
+        "tool_result": 44,
+        "text": 10,
+        "final": 1
+      },
+      "final": {},
+      "session_id": "session-252ccc34-bb69-4678-a0bc-499390069a66",
+      "artifact_count": 14,
+      "artifacts": {
+        "affine_graph.py": "34e2f780299c4ccd261a41719a3fdfe8b1dda6937ca6b57900ccfee9807d41d0",
+        "brute.py": "2bb29a4ef6c9f84f04a45ada2077f96a96ffcf2056ae5e7e893503106882f7f8",
+        "test_fuzz.py": "28a419ce287826c0244df13981d214542e45b6b65df202d0b1cf6cc7cc882aba",
+        "test_edge.py": "265f2cf0104f71af5c37668b71029ebf24f1a383c068178fd9aec3b59ce101ba",
+        "bench.py": "a4c027aaa2039270c64ab572a23fb56ce268da12fac48ba20f7a169d0d0a31e6",
+        "test_fuzz_consistent.py": "5ce119e5523f37496fd91d338f9359cdbd4023f97a2776bdb280eb79fc2e82e5",
+        "test_medium.py": "809fb8ff13d94d34e4e7bc058d9c6f057e8c8551c05a6e862997831e0660a196",
+        "bench_adversarial.py": "8b202b99fa388d6f4fe56e16e16826297faf0db37c24af4f9fbecb863bfe049c",
+        "bench_worstitems.py": "b4970bd88e30091aee37d1131a6bff1851fa654dcc22de8b1330309bc4c4cb25",
+        "test_bigger.py": "a59fcf112be92c00f8734d04c590b935c8da65bcad8309069a7cd559bd9c9ac7",
+        "bench_final.py": "99100e7ee1de6fb9ea834af80d74d98f4c847bfcb4e4160ff9e9c2013a7e9c49",
+        "bench_one.py": "f1854d46993e5bd05729926914cd87d843d1e65ddaa6b4339c2b0a8656e36d66",
+        "design.md": "c2569ae0ee8e5ae6938725e4e756c0a8875b1f65f2d4b5228715a3016cb6e5ec",
+        "test_dupstress.py": "a8f2ae3fdc93be307b6f399058846d49e150551520266a8efb966dc43b490eb3"
+      }
+    },
+    "PHY-05": {
+      "task_id": "PHY-05",
+      "seed": 7291,
+      "outcome": "deadline",
+      "elapsed_s": 1200.065,
+      "exit_code": 0,
+      "event_counts": {
+        "session": 1,
+        "status": 142,
+        "thinking": 70,
+        "tool_call": 72,
+        "tool_result": 72,
+        "text": 11,
+        "final": 1
+      },
+      "final": {},
+      "session_id": "session-d11a3e95-3d9c-4dab-8779-591a4bdb70fa",
+      "artifact_count": 4,
+      "artifacts": {
+        "thermal.py": "b2b3030d23a8d0c220d71af971ef98a48f8a60f0a3eba0992b5c925a1c506578",
+        "ref.py": "6b7e5024bddeba6355733e526a0b260c5a7a54269611348d5fa93c1102f71ac6",
+        "test_vs_ref.py": "8e2eff063f5d37808ca9ae40747a669a1f7b9fabc131a5bd481d10a72ff088fb",
+        "check_balance.py": "7d5aca9d054e1aede7dae397c08bfc3c3973b2a42e47206171d46ec09d6d1528"
+      }
+    },
+    "CAD-05": {
+      "task_id": "CAD-05",
+      "seed": 7291,
+      "outcome": "deadline",
+      "elapsed_s": 1200.065,
+      "exit_code": 0,
+      "event_counts": {
+        "session": 1,
+        "status": 136,
+        "thinking": 68,
+        "tool_call": 70,
+        "tool_result": 69,
+        "text": 9,
+        "final": 1
+      },
+      "final": {},
+      "session_id": "session-9cb64c35-bd35-4521-8c64-cc8badee7354",
+      "artifact_count": 2,
+      "artifacts": {
+        "build.py": "ed23aad3e54dde977f4c8a17c526e969874861c8b8b988e0f693445e7d97455f",
+        "check_fit.py": "fb6427ddc91a3ffd2145fcacbc22a0738e846fb987d1a345e1e9a4f76988aaae"
+      }
+    }
+  },
+  "grades": [
+    {
+      "sample_id": "ALG-07-a6000-7291",
+      "task_id": "ALG-07",
+      "seed": 7291,
+      "criteria": [
+        {
+          "criterion_id": "contract",
+          "points_awarded": 1,
+          "points_possible": 1,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/algorithm-evidence.json",
+          "reason": "题面样例和含负代价的无边查询都通过，返回形状及输入不变。"
+        },
+        {
+          "criterion_id": "small_instances",
+          "points_awarded": 3,
+          "points_possible": 3,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/algorithm-evidence.json",
+          "reason": "六组基础用例逐项匹配独立的标签传播与求和参考。"
+        },
+        {
+          "criterion_id": "incremental",
+          "points_awarded": 2,
+          "points_possible": 2,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/algorithm-evidence.json",
+          "reason": "两组动态加边均逐查询正确，达到题面的时限与内存要求。"
+        },
+        {
+          "criterion_id": "pressure",
+          "points_awarded": 2,
+          "points_possible": 2,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/algorithm-evidence.json",
+          "reason": "四组约十万操作的压力用例均正确，最长求解 1.38 秒。"
+        },
+        {
+          "criterion_id": "design",
+          "points_awarded": 2,
+          "points_possible": 2,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/trials/ALG-07/workspace/design.md",
+          "reason": "说明了双向仿射变换、根域交集、重复边时间区间及回滚并查集的复杂度。"
+        }
+      ],
+      "task_score": 10,
+      "missing_evidence": []
+    },
+    {
+      "sample_id": "PHY-05-a6000-7291",
+      "task_id": "PHY-05",
+      "seed": 7291,
+      "criteria": [
+        {
+          "criterion_id": "interface",
+          "points_awarded": 1,
+          "points_possible": 1,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/thermal-evidence.json",
+          "reason": "公开样例的接口、初态和账本具备，六类无效输入均正确拒绝。"
+        },
+        {
+          "criterion_id": "basic_state",
+          "points_awarded": 1,
+          "points_possible": 1,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/thermal-evidence.json",
+          "reason": "单格相变和均匀零热阻工况均通过。"
+        },
+        {
+          "criterion_id": "contact",
+          "points_awarded": 1.5,
+          "points_possible": 1.5,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/thermal-evidence.json",
+          "reason": "两个方向热阻和周期特殊行的三组测试全部通过。"
+        },
+        {
+          "criterion_id": "radiation",
+          "points_awarded": 1.5,
+          "points_possible": 1.5,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/thermal-evidence.json",
+          "reason": "非相邻格间辐射、内外辐射同时启用和单列边界三组测试均通过。"
+        },
+        {
+          "criterion_id": "coupled",
+          "points_awarded": 2,
+          "points_possible": 3,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/thermal-evidence.json、~/anyaneval-runs/v48-20261123-a91e7d/grade/physics-diagnostic-evidence.json",
+          "reason": "六组通过四组。大步长强辐射与 108 格跨行辐射工况产生非有限值。"
+        },
+        {
+          "criterion_id": "physics_proof",
+          "points_awarded": 1,
+          "points_possible": 2,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/trials/PHY-05/workspace/thermal.py、~/anyaneval-runs/v48-20261123-a91e7d/grade/physics-audit-evidence.json",
+          "reason": "代码给出体积焓、串联热阻与配对能量计算，提交的独立审计脚本可复算三项账本及全局误差。截止时没有 report.md 或全局唯一性论证，求解器也会返回超出残差准则的状态。"
+        }
+      ],
+      "task_score": 8.0,
+      "missing_evidence": [
+        "report.md"
+      ]
+    },
+    {
+      "sample_id": "CAD-05-a6000-7291",
+      "task_id": "CAD-05",
+      "seed": 7291,
+      "criteria": [
+        {
+          "criterion_id": "housing",
+          "points_awarded": 1.5,
+          "points_possible": 1.5,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/cad-mesh-evidence.json",
+          "reason": "截止前保存的脚本可重建默认网格。外轮廓、轴向范围、中心孔和沉孔台阶均通过，套筒为无自交、有四个贯通孔的闭合流形。"
+        },
+        {
+          "criterion_id": "keys",
+          "points_awarded": 2.5,
+          "points_possible": 2.5,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/cad-mesh-evidence.json",
+          "reason": "默认重建的三组槽和芯截面、插芯封口以及四件体积均通过。"
+        },
+        {
+          "criterion_id": "motion",
+          "points_awarded": 2.5,
+          "points_possible": 2.5,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/cad-mesh-evidence.json、~/anyaneval-runs/v48-20261123-a91e7d/grade/cad-audit-evidence.json",
+          "reason": "默认和反向小间隙配置各 25 个位置实测无碰撞。最小采样间隙分别为 0.3450 和 0.1172 mm。代码说明全行程螺旋变换，检查脚本在两个最小间隙位置均可复算。"
+        },
+        {
+          "criterion_id": "rebuild",
+          "points_awarded": 3,
+          "points_possible": 3,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/grade/cad-build-evidence.json、~/anyaneval-runs/v48-20261123-a91e7d/grade/cad-mesh-evidence.json",
+          "reason": "六种配置各由空输出目录生成四件，逐组通过网格、尺寸和体积验收。"
+        },
+        {
+          "criterion_id": "diagram",
+          "points_awarded": 0,
+          "points_possible": 0.5,
+          "evidence_reference": "~/anyaneval-runs/v48-20261123-a91e7d/trials/CAD-05/status.json",
+          "reason": "截止时没有 sections.svg。"
+        }
+      ],
+      "task_score": 9.5,
+      "missing_evidence": [
+        "housing.obj",
+        "guide-a.obj",
+        "guide-b.obj",
+        "guide-c.obj",
+        "sections.svg",
+        "fit.md"
+      ]
+    }
+  ],
+  "validation": {
+    "algorithm": [
+      {
+        "case": "contract_public",
+        "criterion": "contract",
+        "points": 0.5,
+        "passed": true,
+        "n": 2,
+        "operations": 7,
+        "queries": 4,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 4.32920060120523e-05,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "contract_isolated",
+        "criterion": "contract",
+        "points": 0.5,
+        "passed": true,
+        "n": 32,
+        "operations": 4,
+        "queries": 4,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 3.552500857040286e-05,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "affine_chain",
+        "criterion": "small_instances",
+        "points": 0.5,
+        "passed": true,
+        "n": 32,
+        "operations": 63,
+        "queries": 32,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.00026465998962521553,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "reflection_and_cycle",
+        "criterion": "small_instances",
+        "points": 0.5,
+        "passed": true,
+        "n": 32,
+        "operations": 14,
+        "queries": 6,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 6.899298750795424e-05,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "duplicate_multiplicity",
+        "criterion": "small_instances",
+        "points": 0.5,
+        "passed": true,
+        "n": 32,
+        "operations": 12,
+        "queries": 5,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 6.117200246080756e-05,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "split_and_rejoin",
+        "criterion": "small_instances",
+        "points": 0.5,
+        "passed": true,
+        "n": 32,
+        "operations": 41,
+        "queries": 6,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.000270413001999259,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "pin_zero_and_restore",
+        "criterion": "small_instances",
+        "points": 0.5,
+        "passed": true,
+        "n": 32,
+        "operations": 17,
+        "queries": 7,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 9.772001067176461e-05,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "local_feasibility",
+        "criterion": "small_instances",
+        "points": 0.5,
+        "passed": true,
+        "n": 32,
+        "operations": 24,
+        "queries": 7,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.00015857399557717144,
+        "peak_rss_kib": 9728
+      },
+      {
+        "case": "incremental_chain",
+        "criterion": "incremental",
+        "points": 1,
+        "passed": true,
+        "n": 10000,
+        "operations": 19999,
+        "queries": 10000,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.23586491498281248,
+        "peak_rss_kib": 31616
+      },
+      {
+        "case": "interleaved_merges",
+        "criterion": "incremental",
+        "points": 1,
+        "passed": true,
+        "n": 10000,
+        "operations": 19998,
+        "queries": 9999,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.30574528098804876,
+        "peak_rss_kib": 31108
+      },
+      {
+        "case": "repeated_cuts",
+        "criterion": "pressure",
+        "points": 0.5,
+        "passed": true,
+        "n": 30000,
+        "operations": 99999,
+        "queries": 35000,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 1.381268438999541,
+        "peak_rss_kib": 94320
+      },
+      {
+        "case": "long_duplicates",
+        "criterion": "pressure",
+        "points": 0.5,
+        "passed": true,
+        "n": 25000,
+        "operations": 99997,
+        "queries": 19153,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.7180652039824054,
+        "peak_rss_kib": 78060
+      },
+      {
+        "case": "masked_growth",
+        "criterion": "pressure",
+        "points": 0.5,
+        "passed": true,
+        "n": 20000,
+        "operations": 99995,
+        "queries": 39998,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.7969108230026904,
+        "peak_rss_kib": 81992
+      },
+      {
+        "case": "independent_reflections",
+        "criterion": "pressure",
+        "points": 0.5,
+        "passed": true,
+        "n": 32000,
+        "operations": 99984,
+        "queries": 34000,
+        "first_wrong_query": null,
+        "shape": true,
+        "unchanged": true,
+        "elapsed_s": 0.6102312319853809,
+        "peak_rss_kib": 88252
+      }
+    ],
+    "algorithm_limit": {
+      "case": "n_and_ops_100000",
+      "criterion": "supplemental",
+      "points": 0,
+      "passed": true,
+      "n": 100000,
+      "operations": 100000,
+      "queries": 12001,
+      "first_wrong_query": null,
+      "shape": true,
+      "unchanged": true,
+      "elapsed_s": 1.7357096780033316,
+      "peak_rss_kib": 137388
+    },
+    "physics": [
+      {
+        "case": "example_interface",
+        "criterion": "interface",
+        "points": 0.5,
+        "passed": true,
+        "elapsed_s": 0.019731554988538846,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "invalid_inputs",
+        "criterion": "interface",
+        "points": 0.5,
+        "passed": true,
+        "subcases": [
+          {
+            "case": "array_shape",
+            "passed": true,
+            "raised": "ValueError",
+            "elapsed_s": 1.2361007975414395e-05,
+            "peak_rss_kib": 13824
+          },
+          {
+            "case": "material_index",
+            "passed": true,
+            "raised": "ValueError",
+            "elapsed_s": 2.9472983442246914e-05,
+            "peak_rss_kib": 13824
+          },
+          {
+            "case": "negative_contact",
+            "passed": true,
+            "raised": "ValueError",
+            "elapsed_s": 4.119199002161622e-05,
+            "peak_rss_kib": 13824
+          },
+          {
+            "case": "duplicate_radiation",
+            "passed": true,
+            "raised": "ValueError",
+            "elapsed_s": 4.524699761532247e-05,
+            "peak_rss_kib": 13824
+          },
+          {
+            "case": "control_origin",
+            "passed": true,
+            "raised": "ValueError",
+            "elapsed_s": 5.609999061562121e-05,
+            "peak_rss_kib": 13824
+          },
+          {
+            "case": "step_order",
+            "passed": true,
+            "raised": "ValueError",
+            "elapsed_s": 7.69898178987205e-06,
+            "peak_rss_kib": 13824
+          }
+        ]
+      },
+      {
+        "case": "source_phase_boundaries",
+        "criterion": "basic_state",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": null,
+        "cells": 1,
+        "last_step": 6,
+        "elapsed_s": 0.00027967701316811144,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "uniform_zero_contact_boundaries",
+        "criterion": "basic_state",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": null,
+        "cells": 6,
+        "last_step": 1,
+        "elapsed_s": 0.00017172101070173085,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "unequal_width_two_cells",
+        "criterion": "contact",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": null,
+        "cells": 2,
+        "last_step": 1,
+        "elapsed_s": 0.00013706099707633257,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "two_contact_directions",
+        "criterion": "contact",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": null,
+        "cells": 9,
+        "last_step": 1,
+        "elapsed_s": 0.00027208399842493236,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "periodic_special_rows",
+        "criterion": "contact",
+        "points": 0.5,
+        "passed": true,
+        "subcases": [
+          {
+            "case": "periodic_ny1",
+            "criterion": "contact",
+            "points": 0.5,
+            "passed": true,
+            "mismatch": null,
+            "max_step_residual": null,
+            "cells": 3,
+            "last_step": 1,
+            "elapsed_s": 0.00015625098603777587,
+            "peak_rss_kib": 13824
+          },
+          {
+            "case": "periodic_ny2",
+            "criterion": "contact",
+            "points": 0.5,
+            "passed": true,
+            "mismatch": null,
+            "max_step_residual": null,
+            "cells": 6,
+            "last_step": 1,
+            "elapsed_s": 0.00021443000878207386,
+            "peak_rss_kib": 13824
+          }
+        ]
+      },
+      {
+        "case": "isolated_nonadjacent_radiation",
+        "criterion": "radiation",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": null,
+        "cells": 6,
+        "last_step": 1,
+        "elapsed_s": 0.000303893000818789,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "internal_and_external_radiation",
+        "criterion": "radiation",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": null,
+        "cells": 6,
+        "last_step": 1,
+        "elapsed_s": 0.0004028659895993769,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "single_column_radiation",
+        "criterion": "radiation",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": null,
+        "cells": 4,
+        "last_step": 1,
+        "elapsed_s": 0.0003075589775107801,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "melt_then_refreeze",
+        "criterion": "coupled",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": 3.47310180615068e-08,
+        "cells": 12,
+        "last_step": 6,
+        "elapsed_s": 0.0037554729788098484,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "parallel_periodic_faces",
+        "criterion": "coupled",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": 6.155964626941568e-12,
+        "cells": 8,
+        "last_step": 3,
+        "elapsed_s": 0.06507520901504904,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "one_column_two_boundaries",
+        "criterion": "coupled",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": 5.145927239880166e-09,
+        "cells": 5,
+        "last_step": 3,
+        "elapsed_s": 0.000730378000298515,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "control_change_signs",
+        "criterion": "coupled",
+        "points": 0.5,
+        "passed": true,
+        "mismatch": null,
+        "max_step_residual": 1.7763568394002505e-15,
+        "cells": 12,
+        "last_step": 3,
+        "elapsed_s": 0.0005486170121002942,
+        "peak_rss_kib": 13824
+      },
+      {
+        "case": "stiff_backward_step",
+        "criterion": "coupled",
+        "points": 0.5,
+        "passed": false,
+        "mismatch": " length/shape",
+        "max_step_residual": null,
+        "cells": 12,
+        "last_step": 3,
+        "raised": "ValueError",
+        "detail": "Out of range float values are not JSON compliant"
+      },
+      {
+        "case": "cross_row_grid_108",
+        "criterion": "coupled",
+        "points": 0.5,
+        "passed": false,
+        "mismatch": " length/shape",
+        "max_step_residual": null,
+        "cells": 108,
+        "last_step": 8,
+        "raised": "ValueError",
+        "detail": "Out of range float values are not JSON compliant"
+      }
+    ],
+    "physics_diagnostics": [
+      {
+        "case": "stiff_backward_step",
+        "oracle_max_residual": 9.453771099288133e-12,
+        "raised": "ValueError",
+        "detail": "Out of range float values are not JSON compliant"
+      },
+      {
+        "case": "cross_row_grid_108",
+        "oracle_max_residual": 2.220446049250313e-14,
+        "raised": "ValueError",
+        "detail": "Out of range float values are not JSON compliant"
+      }
+    ],
+    "physics_audit": {
+      "answer": {
+        "audit": {
+          "max_cell_residual": 1.2091102492509185,
+          "where": [
+            1,
+            1,
+            -2.586112173439424,
+            -3.7952224226903426
+          ],
+          "account_err": [
+            -1.7763568394002505e-15,
+            -7.105427357601002e-15,
+            3.469446951953614e-18
+          ],
+          "internal_energy_change": 58.677081047632505,
+          "accounted_inflow": 57.46797085205788,
+          "global_bookkeeping_err": 1.209110195574624,
+          "global_bookkeeping_rel": 0.020606174915093343,
+          "min_T": 306.6666666666667,
+          "plateau_cells": 4
+        },
+        "snapshots": [
+          [
+            0,
+            [
+              368.0,
+              300.0,
+              317.0,
+              383.0
+            ],
+            [
+              306.6666666666667,
+              312.0,
+              312.0,
+              310.29411764705884
+            ],
+            [
+              0.0,
+              0.16363636363636466,
+              0.9363636363636374,
+              1.0
+            ],
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            1,
+            [
+              373.31621054828827,
+              297.0612361665461,
+              319.15950891659224,
+              380.85711944065724
+            ],
+            [
+              309.0,
+              312.0,
+              312.5842376281479,
+              309.03359967097487
+            ],
+            [
+              0.2516210548288257,
+              0.030056189388460552,
+              1.0,
+              1.0
+            ],
+            4.528182177888908,
+            -7.129252619052955,
+            0.030800000000000008
+          ],
+          [
+            2,
+            [
+              378.4064915933849,
+              294.89731175569347,
+              319.7963563782044,
+              378.565365636933
+            ],
+            [
+              309.0,
+              310.41822290073,
+              313.0741202909265,
+              309.0
+            ],
+            [
+              0.7606491593384874,
+              0.0,
+              1.0,
+              0.7765365636932984
+            ],
+            9.019623156069422,
+            -13.785938061558141,
+            0.061600000000000016
+          ],
+          [
+            3,
+            [
+              382.4583248282288,
+              293.9978975228444,
+              319.89074747472813,
+              376.28152487282944
+            ],
+            [
+              309.97548519307577,
+              309.47147107667837,
+              313.14672882671397,
+              309.0
+            ],
+            [
+              1.0,
+              0.0,
+              1.0,
+              0.5481524872829425
+            ],
+            13.458795204798239,
+            -20.17200240240352,
+            0.09240000000000002
+          ],
+          [
+            4,
+            [
+              382.07253147106775,
+              307.41791680410785,
+              316.7274602325534,
+              388.22354021581197
+            ],
+            [
+              309.7485479241575,
+              312.0,
+              312.0,
+              313.36678836224235
+            ],
+            [
+              1.0,
+              0.5008144001867213,
+              0.9239754651160659,
+              1.0
+            ],
+            9.930899754258899,
+            9.050384869180292,
+            0.07015000000000002
+          ],
+          [
+            5,
+            [
+              383.2038976124002,
+              320.096805319457,
+              315.1414834025725,
+              396.33821276007245
+            ],
+            [
+              310.41405741905896,
+              313.3052348611208,
+              312.0,
+              318.1401251529838
+            ],
+            [
+              1.0,
+              1.0,
+              0.8518856092078408,
+              1.0
+            ],
+            6.355087620086653,
+            34.31711681644206,
+            0.04790000000000001
+          ],
+          [
+            6,
+            [
+              385.4932054544898,
+              326.6085025679785,
+              317.5667675085574,
+              402.2289342096278
+            ],
+            [
+              311.76070909087633,
+              318.3142327445989,
+              312.0,
+              321.6052554174281
+            ],
+            [
+              1.0,
+              1.0,
+              0.9621257958435194,
+              1.0
+            ],
+            2.6823165655435566,
+            54.760004286514324,
+            0.02565000000000001
+          ]
+        ]
+      },
+      "elapsed_s": 0.020224646024871618,
+      "peak_rss_kib": 13824,
+      "rubric_cell_residual": [
+        1.209110249250918,
+        "residual step 1, cell 1"
+      ]
+    },
+    "cad_rebuild": [
+      {
+        "config": "default",
+        "pitch": 40.0,
+        "clearance": 0.35,
+        "finished": true,
+        "error": null,
+        "elapsed_s": 1.467,
+        "files": [
+          "housing.obj",
+          "guide-a.obj",
+          "guide-b.obj",
+          "guide-c.obj"
+        ]
+      },
+      {
+        "config": "clearance55",
+        "pitch": 40.0,
+        "clearance": 0.55,
+        "finished": true,
+        "error": null,
+        "elapsed_s": 1.617,
+        "files": [
+          "housing.obj",
+          "guide-a.obj",
+          "guide-b.obj",
+          "guide-c.obj"
+        ]
+      },
+      {
+        "config": "pitch52",
+        "pitch": 52.0,
+        "clearance": 0.35,
+        "finished": true,
+        "error": null,
+        "elapsed_s": 1.266,
+        "files": [
+          "housing.obj",
+          "guide-a.obj",
+          "guide-b.obj",
+          "guide-c.obj"
+        ]
+      },
+      {
+        "config": "pitch_minus28",
+        "pitch": -28.0,
+        "clearance": 0.35,
+        "finished": true,
+        "error": null,
+        "elapsed_s": 1.867,
+        "files": [
+          "housing.obj",
+          "guide-a.obj",
+          "guide-b.obj",
+          "guide-c.obj"
+        ]
+      },
+      {
+        "config": "tight_reverse",
+        "pitch": -28.0,
+        "clearance": 0.12,
+        "finished": true,
+        "error": null,
+        "elapsed_s": 1.667,
+        "files": [
+          "housing.obj",
+          "guide-a.obj",
+          "guide-b.obj",
+          "guide-c.obj"
+        ]
+      },
+      {
+        "config": "mixed",
+        "pitch": 31.75,
+        "clearance": 0.239,
+        "finished": true,
+        "error": null,
+        "elapsed_s": 1.617,
+        "files": [
+          "housing.obj",
+          "guide-a.obj",
+          "guide-b.obj",
+          "guide-c.obj"
+        ]
+      }
+    ],
+    "cad_audit": [
+      {
+        "config": "default",
+        "exit_code": 0,
+        "pose_d": -1.5,
+        "height_z": 32.201,
+        "measurements": [
+          "z=32.20  j0 gap=0.3450 inside=True  j1 gap=0.3453 inside=True  j2 gap=0.3450 inside=True",
+          "I d=-1.50  guide surface samples inside housing = 0   housing nodes inside guides = 0"
+        ]
+      },
+      {
+        "config": "tight_reverse",
+        "exit_code": 0,
+        "pose_d": 1.25,
+        "height_z": 36.789,
+        "measurements": [
+          "z=36.79  j0 gap=0.1172 inside=True  j1 gap=0.1172 inside=True  j2 gap=0.1173 inside=True",
+          "I d=+1.25  guide surface samples inside housing = 0   housing nodes inside guides = 0"
+        ]
+      }
+    ],
+    "cad_mesh": {
+      "submitted": {
+        "file_errors": {
+          "housing.obj": "FileNotFoundError: artifact absent at the deadline",
+          "guide-a.obj": "FileNotFoundError: artifact absent at the deadline",
+          "guide-b.obj": "FileNotFoundError: artifact absent at the deadline",
+          "guide-c.obj": "FileNotFoundError: artifact absent at the deadline"
+        },
+        "topology": {},
+        "outer_pass": false,
+        "bore_pass": false,
+        "housing_topology_pass": false,
+        "guide_profile_pass": [
+          false,
+          false,
+          false
+        ],
+        "guide_caps_pass": false,
+        "volume_pass": false,
+        "profile_error_mm": {
+          "outer": null,
+          "bore": null,
+          "slots": [
+            null,
+            null,
+            null
+          ],
+          "guides": [
+            null,
+            null,
+            null
+          ]
+        },
+        "relative_volume_errors": [
+          null,
+          null,
+          null,
+          null
+        ],
+        "rebuild_geometry_pass": false
+      },
+      "default": {
+        "file_errors": {},
+        "topology": {
+          "housing.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": -6,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-a.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-b.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-c.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          }
+        },
+        "outer_pass": true,
+        "bore_pass": true,
+        "housing_topology_pass": true,
+        "guide_profile_pass": [
+          true,
+          true,
+          true
+        ],
+        "guide_caps_pass": true,
+        "volume_pass": true,
+        "profile_error_mm": {
+          "outer": 0.006636130581585593,
+          "bore": 0.0012850472091877625,
+          "slots": [
+            0.005889171648010474,
+            0.005588519449388168,
+            0.005887734561604132
+          ],
+          "guides": [
+            0.001955184228840577,
+            0.001892637924149823,
+            0.0019551076200831786
+          ]
+        },
+        "relative_volume_errors": [
+          0.00025424154288822276,
+          0.0008020412191567239,
+          0.0008020322473922814,
+          0.0008020554563934468
+        ],
+        "rebuild_geometry_pass": true,
+        "motion": {
+          "collision_free_and_in_slots": true,
+          "clearance_pass": true,
+          "first_violation": null,
+          "samples_per_guide": [
+            175,
+            175,
+            175
+          ],
+          "min_gap_and_pose": [
+            [
+              0.34501025110264694,
+              -1.5,
+              32.201
+            ],
+            [
+              0.3452646186138971,
+              2.5,
+              36.201
+            ],
+            [
+              0.34501434168157846,
+              -1.5,
+              32.201
+            ]
+          ],
+          "max_gap_and_pose": [
+            [
+              0.34949979140580695,
+              -0.25,
+              35.289
+            ],
+            [
+              0.34950416971274123,
+              -0.25,
+              35.289
+            ],
+            [
+              0.3494971188931159,
+              -0.25,
+              35.289
+            ]
+          ]
+        }
+      },
+      "clearance55": {
+        "file_errors": {},
+        "topology": {
+          "housing.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": -6,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-a.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-b.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-c.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          }
+        },
+        "outer_pass": true,
+        "bore_pass": true,
+        "housing_topology_pass": true,
+        "guide_profile_pass": [
+          true,
+          true,
+          true
+        ],
+        "guide_caps_pass": true,
+        "volume_pass": true,
+        "profile_error_mm": {
+          "outer": 0.006636130581585593,
+          "bore": 0.0012850472091877625,
+          "slots": [
+            0.00597130808482439,
+            0.005670167922284185,
+            0.005969426912298269
+          ],
+          "guides": [
+            0.001955184228840577,
+            0.001892637924149823,
+            0.0019551076200831786
+          ]
+        },
+        "relative_volume_errors": [
+          0.00024001076607049754,
+          0.0008020412191567239,
+          0.0008020322473922814,
+          0.0008020554563934468
+        ],
+        "rebuild_geometry_pass": true
+      },
+      "pitch52": {
+        "file_errors": {},
+        "topology": {
+          "housing.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": -6,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-a.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-b.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-c.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          }
+        },
+        "outer_pass": true,
+        "bore_pass": true,
+        "housing_topology_pass": true,
+        "guide_profile_pass": [
+          true,
+          true,
+          true
+        ],
+        "guide_caps_pass": true,
+        "volume_pass": true,
+        "profile_error_mm": {
+          "outer": 0.006636130581585593,
+          "bore": 0.0012850472091877625,
+          "slots": [
+            0.005968593538131642,
+            0.0056637610572062656,
+            0.005965996575373114
+          ],
+          "guides": [
+            0.001976321588531887,
+            0.0019127474757247868,
+            0.0019755704231607667
+          ]
+        },
+        "relative_volume_errors": [
+          0.0002530078789845236,
+          0.000799864574830278,
+          0.0007998744510382405,
+          0.0007998621892137958
+        ],
+        "rebuild_geometry_pass": true
+      },
+      "pitch_minus28": {
+        "file_errors": {},
+        "topology": {
+          "housing.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": -6,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-a.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-b.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-c.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          }
+        },
+        "outer_pass": true,
+        "bore_pass": true,
+        "housing_topology_pass": true,
+        "guide_profile_pass": [
+          true,
+          true,
+          true
+        ],
+        "guide_caps_pass": true,
+        "volume_pass": true,
+        "profile_error_mm": {
+          "outer": 0.006636130581585593,
+          "bore": 0.0012850472091877625,
+          "slots": [
+            0.0050092434101334515,
+            0.0050222042333134915,
+            0.004601322898477438
+          ],
+          "guides": [
+            0.001970175222547578,
+            0.001973295434472588,
+            0.001888375209602963
+          ]
+        },
+        "relative_volume_errors": [
+          0.00042265301157295987,
+          0.0008363484624596129,
+          0.0008363549895300526,
+          0.0008363507788744506
+        ],
+        "rebuild_geometry_pass": true
+      },
+      "tight_reverse": {
+        "file_errors": {},
+        "topology": {
+          "housing.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": -6,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-a.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-b.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-c.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          }
+        },
+        "outer_pass": true,
+        "bore_pass": true,
+        "housing_topology_pass": true,
+        "guide_profile_pass": [
+          true,
+          true,
+          true
+        ],
+        "guide_caps_pass": true,
+        "volume_pass": true,
+        "profile_error_mm": {
+          "outer": 0.006636130581585593,
+          "bore": 0.0012850472091877625,
+          "slots": [
+            0.005104800458513737,
+            0.005116984027582589,
+            0.004696465707115422
+          ],
+          "guides": [
+            0.001970175222547578,
+            0.001973295434472588,
+            0.001888375209602963
+          ]
+        },
+        "relative_volume_errors": [
+          0.00042537132456665905,
+          0.0008363484624596129,
+          0.0008363549895300526,
+          0.0008363507788744506
+        ],
+        "rebuild_geometry_pass": true,
+        "motion": {
+          "collision_free_and_in_slots": true,
+          "clearance_pass": true,
+          "first_violation": null,
+          "samples_per_guide": [
+            175,
+            175,
+            175
+          ],
+          "min_gap_and_pose": [
+            [
+              0.11723231552497924,
+              0.75,
+              36.289
+            ],
+            [
+              0.11718342165271142,
+              1.25,
+              36.789
+            ],
+            [
+              0.11727023589693387,
+              0.75,
+              36.289
+            ]
+          ],
+          "max_gap_and_pose": [
+            [
+              0.1194981742784689,
+              3.0,
+              16.417
+            ],
+            [
+              0.11951406665450728,
+              3.0,
+              16.417
+            ],
+            [
+              0.11949656638583338,
+              3.0,
+              16.417
+            ]
+          ]
+        }
+      },
+      "mixed": {
+        "file_errors": {},
+        "topology": {
+          "housing.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": -6,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-a.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-b.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          },
+          "guide-c.obj": {
+            "triangular_obj": true,
+            "watertight": true,
+            "outward_winding": true,
+            "connected": true,
+            "degenerate_faces": 0,
+            "vertex_fans": true,
+            "euler_number": 2,
+            "surface_self_intersections": 0,
+            "self_check_error": null,
+            "solid_status": "Error.NoError",
+            "valid": true
+          }
+        },
+        "outer_pass": true,
+        "bore_pass": true,
+        "housing_topology_pass": true,
+        "guide_profile_pass": [
+          true,
+          true,
+          true
+        ],
+        "guide_caps_pass": true,
+        "volume_pass": true,
+        "profile_error_mm": {
+          "outer": 0.006636130581585593,
+          "bore": 0.0012850472091877625,
+          "slots": [
+            0.005896163893319798,
+            0.005592619245384145,
+            0.005893274900170204
+          ],
+          "guides": [
+            0.0019151125856535405,
+            0.0018543791072858833,
+            0.001914163333320613
+          ]
+        },
+        "relative_volume_errors": [
+          0.0002605811697211635,
+          0.0008015750025239798,
+          0.000801575062529758,
+          0.0008015790187707594
+        ],
+        "rebuild_geometry_pass": true
+      }
+    }
+  }
+}

@@ -23,6 +23,8 @@ def read(path):
 
 
 def index(suite, rubric):
+    if suite["version"] != rubric["suite_version"] or suite["maximum_score"] != 100:
+        raise ValueError("Version or scale differs")
     dimensions = suite["dimensions"]
     if len(dimensions) != 10 or len({row["name"] for row in dimensions}) != 10:
         raise ValueError("Expected ten distinct dimensions")
@@ -151,10 +153,21 @@ def valid_score(value, maximum):
 
 
 def verify(suite, rubric, result):
-    for field, path in (("tasks_sha256", TASKS), ("rubric_sha256", RUBRIC)):
+    version = result["suite_version"]
+    if type(version) is not int or version < 1:
+        raise ValueError("Invalid result suite version")
+    tasks_path, rubric_path = TASKS, RUBRIC
+    if version != suite["version"]:
+        archive = TASKS.parent / "archive" / f"v{version}"
+        tasks_path, rubric_path = archive / "tasks.json", archive / "rubric.json"
+        if not (tasks_path.is_file() and rubric_path.is_file()):
+            raise ValueError(f"No archived manifests for suite version {version}")
+        suite, rubric = read(tasks_path), read(rubric_path)
+        index(suite, rubric)
+    for field, path in (("tasks_sha256", tasks_path), ("rubric_sha256", rubric_path)):
         if result[field] != hashlib.sha256(path.read_bytes()).hexdigest():
             raise ValueError(f"File digest differs: {path.name}")
-    if (suite["version"] != rubric["suite_version"] or suite["version"] != result["suite_version"]
+    if (suite["version"] != rubric["suite_version"] or suite["version"] != version
             or suite["maximum_score"] != 100 or result["maximum_total"] != 100):
         raise ValueError("Version or scale differs")
     rows = result["dimensions"]
@@ -178,7 +191,7 @@ def verify(suite, rubric, result):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     sub = parser.add_subparsers(dest="command", required=True)
-    confirm = sub.add_parser("verify", help="verify the published scores and frozen manifests")
+    confirm = sub.add_parser("verify", help="check the active suite and verify a result against its version")
     confirm.add_argument("--result", type=Path, default=RESULT)
     setup = sub.add_parser("prepare", help="materialize one turn and its prompt")
     setup.add_argument("task_id")
